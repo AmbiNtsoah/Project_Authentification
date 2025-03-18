@@ -15,6 +15,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+/**
+ * Classe SignUpFrame pour gérer l'interface d'inscription des utilisateurs.
+ * Cette classe permet aux utilisateurs de s'inscrire via une interface graphique.
+ */
 public class SignUpFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
