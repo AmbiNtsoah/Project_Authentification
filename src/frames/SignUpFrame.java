@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import frames.AuthService;
+import frames.FileAuthService;
 
 public class SignUpFrame extends JFrame {
 
@@ -25,6 +27,7 @@ public class SignUpFrame extends JFrame {
 	private JPasswordField confirmPassword;
 	private JPasswordField createPassword;
 	private JTextField loginUser;
+	private AuthService authService = new FileAuthService();
 
 
 	/**
@@ -138,24 +141,19 @@ public class SignUpFrame extends JFrame {
 	 * Inscrire le nouveau utilisateur
 	 * */
 	private void signingUp() {
-		String emailUser = loginUser.getText();
-		String createPasswordUser = new String(createPassword.getPassword());
-		String confirmPasswordUser = new String(confirmPassword.getPassword());
-		
-		if (emailUser.isEmpty() || createPasswordUser.isEmpty() || confirmPasswordUser.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", "Erreur", JOptionPane.ERROR_MESSAGE);
-		}
-		
-		if (!confirmPasswordUser.equals(createPasswordUser)) {
-			JOptionPane.showMessageDialog(this, "Les mots de passe ne sont pas identiques !", "Erreur", JOptionPane.ERROR_MESSAGE);
-		}
-		
-		try {
-			
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(this, e);
-		}
-		
+	    String emailUser = loginUser.getText();
+	    String createPasswordUser = new String(createPassword.getPassword());
+	    String confirmPasswordUser = new String(confirmPassword.getPassword());
+
+	    if (emailUser.isEmpty() || createPasswordUser.isEmpty() || confirmPasswordUser.isEmpty()) {
+	        JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", "Erreur", JOptionPane.ERROR_MESSAGE);
+	    } else if (!confirmPasswordUser.equals(createPasswordUser)) {
+	        JOptionPane.showMessageDialog(this, "Les mots de passe ne sont pas identiques !", "Erreur", JOptionPane.ERROR_MESSAGE);
+	    } else {
+	        authService.register(emailUser, createPasswordUser);
+	        JOptionPane.showMessageDialog(this, "Inscription réussie !", "Info", JOptionPane.INFORMATION_MESSAGE);
+	        redirectLogin();
+	    }
 	}
 	
 	/**

@@ -1,6 +1,8 @@
 package frames; /** Package qui contient les éléments sur l'interface graphique. */
 
 import java.awt.EventQueue;
+import frames.AuthService;
+import frames.FileAuthService;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -27,6 +29,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField loginUserField;
 	private JPasswordField passwordField;
+	private AuthService authService = new FileAuthService();
 
 	/**
 	 * Constructeur qui permet de créer notre interfce utilisateur pour se connecter.
@@ -121,12 +124,16 @@ public class MainFrame extends JFrame {
 	 * Methode permettant à l'utilisateur de se connecter
 	 * */
 	private void connect() {
-		String userLogin = loginUserField.getText();
-		String userPassword = new String(passwordField.getPassword());
-		
-		if (userLogin.isEmpty() || userPassword.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", "Erreur", JOptionPane.ERROR_MESSAGE);
-		}
+	    String userLogin = loginUserField.getText();
+	    String userPassword = new String(passwordField.getPassword());
+
+	    if (userLogin.isEmpty() || userPassword.isEmpty()) {
+	        JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", "Erreur", JOptionPane.ERROR_MESSAGE);
+	    } else if (authService.login(userLogin, userPassword)) {
+	        JOptionPane.showMessageDialog(this, "Connexion réussie !", "Info", JOptionPane.INFORMATION_MESSAGE);
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Login ou mot de passe incorrect !", "Erreur", JOptionPane.ERROR_MESSAGE);
+	    }
 	}
 	
 	/**
