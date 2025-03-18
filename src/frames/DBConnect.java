@@ -9,6 +9,9 @@ import java.sql.SQLException;
 public class DBConnect implements AuthService {
     private static final String URL = "jdbc:sqlite:users.db";
 
+    /**
+     * Crée la table si elle n'éxiste pas encore
+     * */
     public DBConnect() {
         try (Connection conn = DriverManager.getConnection(URL)) {
             if (conn != null) {
@@ -26,6 +29,9 @@ public class DBConnect implements AuthService {
         }
     }
 
+    /**
+     * Methode pour permettre la connexion utilisateurs déjà inscrit
+     * */
     @Override
     public boolean login(String username, String password) {
         String hashedPassword = HashUtils.hashPassword(password);
@@ -42,6 +48,9 @@ public class DBConnect implements AuthService {
         }
     }
 
+    /**
+     * Methode pour permettre l'inscription des nouveaux utilisateurs
+     * */
     @Override
     public void register(String username, String password) {
         String hashedPassword = HashUtils.hashPassword(password);
