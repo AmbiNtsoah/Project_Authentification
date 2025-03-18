@@ -15,11 +15,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import frames.AuthService;
-import frames.FileAuthService;
-
 public class SignUpFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -141,23 +136,28 @@ public class SignUpFrame extends JFrame {
 	 * Inscrire le nouveau utilisateur
 	 * */
 	private void signingUp() {
-	    String emailUser = loginUser.getText();
-	    String createPasswordUser = new String(createPassword.getPassword());
-	    String confirmPasswordUser = new String(confirmPassword.getPassword());
-
-	    if (emailUser.isEmpty() || createPasswordUser.isEmpty() || confirmPasswordUser.isEmpty()) {
-	    	throw new CustomException("Veuillez remplir tous les champs");
-	    } else if (!confirmPasswordUser.equals(createPasswordUser)) {
-	    	throw new CustomException("Les mots de passe ne correspondent pas");
-	    } else {
-	    	try {
-		        authService.register(emailUser, createPasswordUser);
-		        JOptionPane.showMessageDialog(this, "Inscription réussie !", "Info", JOptionPane.INFORMATION_MESSAGE);
-		        redirectLogin();
-	    	} catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-	    }
+		
+		try {
+			String emailUser = loginUser.getText();
+		    String createPasswordUser = new String(createPassword.getPassword());
+		    String confirmPasswordUser = new String(confirmPassword.getPassword());
+		    
+		    if (emailUser.isEmpty() || createPasswordUser.isEmpty() || confirmPasswordUser.isEmpty()) {
+		    	throw new CustomException("Les mots de passe ne correspondent pas");
+		    }
+		    if (!confirmPasswordUser.equals(createPasswordUser)) {
+		    	throw new CustomException("Les mots de passe ne correspondent pas");
+		    	}
+		    authService.register(emailUser, createPasswordUser);
+	        JOptionPane.showMessageDialog(this, "Inscription réussie !", "Info", JOptionPane.INFORMATION_MESSAGE);
+	        redirectLogin();
+		}
+		catch (CustomException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+	   
 	}
 	
 	/**
