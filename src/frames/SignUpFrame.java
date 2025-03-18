@@ -150,9 +150,13 @@ public class SignUpFrame extends JFrame {
 	    } else if (!confirmPasswordUser.equals(createPasswordUser)) {
 	        JOptionPane.showMessageDialog(this, "Les mots de passe ne sont pas identiques !", "Erreur", JOptionPane.ERROR_MESSAGE);
 	    } else {
-	        authService.register(emailUser, createPasswordUser);
-	        JOptionPane.showMessageDialog(this, "Inscription réussie !", "Info", JOptionPane.INFORMATION_MESSAGE);
-	        redirectLogin();
+	    	try {
+		        authService.register(emailUser, createPasswordUser);
+		        JOptionPane.showMessageDialog(this, "Inscription réussie !", "Info", JOptionPane.INFORMATION_MESSAGE);
+		        redirectLogin();
+	    	} catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
 	    }
 	}
 	

@@ -32,6 +32,9 @@ public class FileAuthService implements AuthService {
      */
     @Override
     public void register(String username, String password) {
+    	if (!username.contains("@")) {
+            throw new IllegalArgumentException("L'email doit contenir un '@'");
+        }
         try (FileWriter fw = new FileWriter(file, true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
