@@ -23,6 +23,7 @@ public class FileAuthService implements AuthService {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+            throw new CustomException("Erreur de lecture du fichier");
         }
         return false;
     }
@@ -35,12 +36,13 @@ public class FileAuthService implements AuthService {
     	if (!username.contains("@")) {
             throw new IllegalArgumentException("L'email doit contenir un '@'");
         }
-        try (FileWriter fw = new FileWriter(file, true);
+        try (FileWriter fw = new FileWriter(file, true); /** Commentaire*/
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println(username + ":" + password);
         } catch (IOException ex) {
             ex.printStackTrace();
+            throw new CustomException("Erreur d'écriture dans le fichier");
         }
     }
 }

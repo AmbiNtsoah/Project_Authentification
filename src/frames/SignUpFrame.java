@@ -146,9 +146,9 @@ public class SignUpFrame extends JFrame {
 	    String confirmPasswordUser = new String(confirmPassword.getPassword());
 
 	    if (emailUser.isEmpty() || createPasswordUser.isEmpty() || confirmPasswordUser.isEmpty()) {
-	        JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", "Erreur", JOptionPane.ERROR_MESSAGE);
+	    	throw new CustomException("Veuillez remplir tous les champs");
 	    } else if (!confirmPasswordUser.equals(createPasswordUser)) {
-	        JOptionPane.showMessageDialog(this, "Les mots de passe ne sont pas identiques !", "Erreur", JOptionPane.ERROR_MESSAGE);
+	    	throw new CustomException("Les mots de passe ne correspondent pas");
 	    } else {
 	    	try {
 		        authService.register(emailUser, createPasswordUser);
