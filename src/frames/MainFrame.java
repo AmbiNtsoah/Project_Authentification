@@ -29,7 +29,7 @@ public class MainFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField loginUserField;
 	private JPasswordField passwordField;
-	private AuthService authService = new FileAuthService();
+	private AuthService authService = new DBConnect();
 
 	/**
 	 * Constructeur qui permet de créer notre interfce utilisateur pour se connecter.
