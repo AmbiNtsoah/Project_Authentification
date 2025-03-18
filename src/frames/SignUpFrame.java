@@ -27,7 +27,7 @@ public class SignUpFrame extends JFrame {
 	private JPasswordField confirmPassword;
 	private JPasswordField createPassword;
 	private JTextField loginUser;
-	private AuthService authService = new FileAuthService();
+	private AuthService authService = new DBConnect();
 
 
 	/**
