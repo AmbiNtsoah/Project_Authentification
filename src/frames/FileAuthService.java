@@ -36,7 +36,7 @@ public class FileAuthService implements AuthService {
     	if (!username.contains("@")) {
             throw new IllegalArgumentException("L'email doit contenir un '@'");
         }
-        try (FileWriter fw = new FileWriter(file, true);
+        try (FileWriter fw = new FileWriter(file, true); /** Commentaire*/
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println(username + ":" + password);
