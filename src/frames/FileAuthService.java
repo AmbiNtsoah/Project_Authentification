@@ -14,10 +14,11 @@ public class FileAuthService implements AuthService {
      */
     @Override
     public boolean login(String username, String password) {
+    	String hashedPassword = HashUtils.hashPassword(password);
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String[] credentials = scanner.nextLine().split(":");
-                if (credentials.length == 2 && credentials[0].equals(username) && credentials[1].equals(password)) {
+                if (credentials.length == 2 && credentials[0].equals(username) && credentials[1].equals(hashedPassword)) {
                     return true;
                 }
             }
@@ -36,10 +37,15 @@ public class FileAuthService implements AuthService {
     	if (!username.contains("@")) {
             throw new IllegalArgumentException("L'email doit contenir un '@'");
         }
+<<<<<<< HEAD
         try (FileWriter fw = new FileWriter(file, true); /** Commentaire*/
+=======
+    	String hashedPassword = HashUtils.hashPassword(password);
+        try (FileWriter fw = new FileWriter(file, true);
+>>>>>>> 935d8e7ce7cd6399ad72e5d586815bb49d777390
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
-            out.println(username + ":" + password);
+            out.println(username + ":" + hashedPassword);
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new CustomException("Erreur d'écriture dans le fichier");

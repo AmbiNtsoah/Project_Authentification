@@ -1,2 +1,10 @@
 santatra@gmail.com:santatra
+<<<<<<< HEAD
 ambi@gmail.com:ambi
+=======
+Miha@gmail.com:miha
+user@gmail.com:04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+user@gmail:04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb
+admin@gmail.com:8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+admin@gmail.com:8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+>>>>>>> 935d8e7ce7cd6399ad72e5d586815bb49d777390
