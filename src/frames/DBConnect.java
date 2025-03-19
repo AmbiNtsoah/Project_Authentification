@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe qui va gérer les interactions avec la base de données
+ * Crée des tables, et ajout les utilisateurs pour se connecter après
+ */
 public class DBConnect implements AuthService {
     private static final String URL = "jdbc:sqlite:users.db";
 

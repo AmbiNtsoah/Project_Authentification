@@ -2,6 +2,10 @@ package frames;
 
 import java.awt.EventQueue;
 
+/**
+ * La classe principale
+ * Le point d'entrée de notre application Authentification
+ */
 public class Main {
 
 	/** 
