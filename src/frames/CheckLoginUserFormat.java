@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 
 class CheckLoginUserFormat {
 
+	/**
+	 * Fais le test pour vérifier si le login utilisateur réspecte 
+	 * les consignes 
+	 */
 	@Test
     @DisplayName("Test Correct login user format")
     void EmailValidFormat() {
@@ -18,6 +22,10 @@ class CheckLoginUserFormat {
         assertFalse(SignUpFrame.isEmailFormatValid("user@.com")); // Domaine invalide
     }
 
+	/**
+	 * Fais le test si le mot de passe est sûr
+	 * Strong password
+	 * */
 	@Test
 	@DisplayName("Test Strong Password")
 	void isPasswordUserStrong() {
