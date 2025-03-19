@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -136,6 +139,32 @@ public class SignUpFrame extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+	
+	 /**  
+	 * @param password
+	 * @return
+	 */
+	
+	static boolean isPasswordFormatValid(String password) {
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()\\-_=+<>?]).{12,}$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+	
+	/**
+     * 
+     * @param email
+     * @return
+     */
+
+	static boolean isEmailFormatValid(String email) {
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 	
 	/**
 	 * Inscrire le nouveau utilisateur
